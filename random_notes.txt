@@ -30,4 +30,20 @@ def generate_password(length=12):
     return ''.join(random.choice(characters) for i in range(length))
 ```
 
-Last updated: June 19, 2025
+---
+
+## Learning Resources
+- [Real Python](https://realpython.com/) - Tutorials for all skill levels
+- [Python Documentation](https://docs.python.org/3/) - Official Python docs
+- [Automate the Boring Stuff](https://automatetheboringstuff.com/) - Practical Python programming
+- [Python Discord](https://pythondiscord.com/) - Community for learning and discussion
+- [PyBites](https://pybit.es/) - Python challenges and exercises
+
+## Development Environment Tips
+1. Use virtual environments for project isolation
+2. Set up linting with flake8 or pylint
+3. Format code with black or autopep8
+4. Use type hints for better code quality
+5. Write tests with pytest or unittest
+
+Last updated: June 19, 2025 (Added learning resources and dev tips)

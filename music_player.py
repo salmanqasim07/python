@@ -12,14 +12,14 @@ current_volume = 70  # Default volume level
 def open_file():
 	global filetoplay
 	fln=filedialog.askopenfilename(pathlib.path.cwd(),
-	title="Select Music", filetype=(("Music FIle mp3", "*.mp3"),("All Files", "*.*")))
-	fls.set("Track: "+pathlib.path.basename(fln))
+	title="Select Music File", filetype=(("Music File mp3", "*.mp3"),("All Files", "*.*")))
+	fls.set("Now Playing: "+pathlib.path.basename(fln))
 	filetoplay = fln
 
 def play_music():
 	if filetoplay == '':
 		messagebox.showerror(title="Track Error!",
-		message="No Track Selected")
+		message="No Music Track Selected")
 		return
 
 	track = vlc_obj.media_new(filetoplay)
@@ -28,6 +28,9 @@ def play_music():
 	
 def stop_music():
 	player.stop()
+
+def pause_music():
+	player.pause()
 	
 def volume_up():
 	global current_volume
@@ -51,10 +54,10 @@ root=Tk()
 fls=StringVar()
 volume_var=StringVar()
 volume_var.set(f"Volume: {current_volume}%")
-fls.set("Track: No Track Select")
-root.title("Music Player By Salman and Sadaqt")
+fls.set("Track: No Music Selected")
+root.title("Enhanced Music Player By Salman and Sadaqt")
 
-wrapper = LabelFrame(root, text="Music Player")
+wrapper = LabelFrame(root, text="Music Player Pro")
 wrapper.pack(fill="both",expand="yes", padx=10, pady=10)
 
 label = Label(wrapper, textvariable=fls)
@@ -63,19 +66,21 @@ label.pack()
 volume_label = Label(wrapper, textvariable=volume_var)
 volume_label.pack()
 
-button1=Button(wrapper, text="Track", command=open_file)
-button1.pack(side=tk.LEFT, padx=15,)
+button1=Button(wrapper, text="Select Track", command=open_file)
+button1.pack(side=tk.LEFT, padx=10,)
 button2=Button(wrapper, text="Play", command=play_music)
-button2.pack(side=tk.LEFT, padx=15,)
-button3=Button(wrapper, text="Stop", command=stop_music)
-button3.pack(side=tk.LEFT, padx=15)
-button4=Button(wrapper, text="Vol+", command=volume_up)
-button4.pack(side=tk.LEFT, padx=15)
-button5=Button(wrapper, text="Vol-", command=volume_down)
-button5.pack(side=tk.LEFT, padx=15)
-button6=Button(wrapper, text="Exit", command=lambda: exit())
-button6.pack(side=tk.LEFT, padx=15)
+button2.pack(side=tk.LEFT, padx=10,)
+button3=Button(wrapper, text="Pause", command=pause_music)
+button3.pack(side=tk.LEFT, padx=10,)
+button4=Button(wrapper, text="Stop", command=stop_music)
+button4.pack(side=tk.LEFT, padx=10)
+button5=Button(wrapper, text="Vol+", command=volume_up)
+button5.pack(side=tk.LEFT, padx=10)
+button6=Button(wrapper, text="Vol-", command=volume_down)
+button6.pack(side=tk.LEFT, padx=10)
+button7=Button(wrapper, text="Exit", command=lambda: exit())
+button7.pack(side=tk.LEFT, padx=10)
 
-root.geometry("550x180")
+root.geometry("600x180")
 root.resizable(False,False)
 root.mainloop()
